@@ -1,0 +1,140 @@
+:root{
+  --red:#d6202f; --ink:#111; --white:#fff; --panel:#2a2a2a; --muted:#6b6b6b;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--white);min-height:100%;overflow-x:hidden;background:#c9a77a}
+
+/* ---------- HERO BACKGROUND (CSS-drawn desert) ---------- */
+.hero{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;
+  background:linear-gradient(180deg,#8d8a86 0%,#b9aa95 28%,#d8c3a2 52%,#d1b184 70%,#c49f6c 100%)}
+.hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 40% 22%,rgba(255,236,200,.55),transparent 55%)}
+.cliff{position:absolute;right:0;top:20%;width:48%;height:52%;
+  background:linear-gradient(90deg,#a2825f,#8c6a4a 60%,#6f533b);
+  clip-path:polygon(0 100%,4% 52%,12% 40%,20% 18%,34% 14%,46% 4%,64% 8%,80% 0,100% 6%,100% 100%);
+  filter:blur(1.2px)}
+.cliff::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 3px,transparent 3px 26px),
+             repeating-linear-gradient(180deg,rgba(255,255,255,.06) 0 2px,transparent 2px 34px)}
+.city{position:absolute;left:0;bottom:36%;width:42%;height:22%;opacity:.6;filter:blur(2px);
+  background:
+   linear-gradient(#9a9791,#9a9791) 6% 100%/7% 55% no-repeat,
+   linear-gradient(#a8a49d,#a8a49d) 15% 100%/6% 80% no-repeat,
+   linear-gradient(#9a9791,#9a9791) 23% 100%/8% 45% no-repeat,
+   linear-gradient(#b0aca4,#b0aca4) 33% 100%/6% 100% no-repeat,
+   linear-gradient(#a09c95,#a09c95) 42% 100%/9% 60% no-repeat,
+   linear-gradient(#aaa69f,#aaa69f) 54% 100%/7% 75% no-repeat,
+   linear-gradient(#9a9791,#9a9791) 66% 100%/8% 50% no-repeat,
+   linear-gradient(#a8a49d,#a8a49d) 78% 100%/6% 35% no-repeat}
+.dunes{position:absolute;left:0;right:0;bottom:0;height:48%;
+  background:
+   radial-gradient(120% 70% at 20% 100%,#c8a373 0 55%,transparent 56%),
+   radial-gradient(110% 60% at 75% 100%,#d4b185 0 50%,transparent 51%),
+   linear-gradient(180deg,#d9bb90,#c59c68)}
+.dunes::before{content:"";position:absolute;inset:0;opacity:.35;
+  background:repeating-radial-gradient(ellipse at 30% 120%,transparent 0 14px,rgba(120,80,40,.25) 15px 16px)}
+
+/* ---------- NAV ---------- */
+.nav{position:absolute;z-index:10;top:calc(10px + env(safe-area-inset-top,0px));left:5%;right:7%;
+  height:62px;background:#fff;border-radius:14px;display:flex;align-items:center;
+  padding:0 20px;box-shadow:0 6px 24px rgba(0,0,0,.12);color:var(--ink)}
+.logo{width:38px;height:38px;border:3px solid var(--ink);border-radius:50% 50% 45% 45%;
+  display:grid;place-items:center;font-weight:900;font-size:15px;letter-spacing:-1px;flex:none}
+.menu{display:flex;gap:34px;margin:0 auto;padding:0;list-style:none}
+.menu a{color:#555;text-decoration:none;font-size:17px;font-weight:500}
+.menu a:hover,.menu a:focus-visible{color:var(--ink)}
+.search{background:none;border:0;cursor:pointer;margin-right:16px;padding:6px;color:var(--ink)}
+.btn{font:inherit;font-size:16px;font-weight:500;border-radius:10px;padding:13px 22px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-outline{background:#fff;color:var(--ink);border:1.5px solid var(--ink);margin-right:10px}
+.btn-red{background:var(--red);color:#fff;border:1.5px solid var(--red)}
+.nav .btn-red{margin-right:-4px}
+
+/* ---------- QUICK PANEL (right) ---------- */
+.quick{position:absolute;z-index:9;top:78px;right:0;width:22%;min-width:230px;height:430px;
+  background:rgba(25,25,25,.92);padding:14px 12px;display:flex;flex-direction:column;gap:10px;
+  transition:transform .3s ease}
+.quick.closed{transform:translateX(100%)}
+.quick a{display:flex;justify-content:space-between;align-items:center;background:#3a3a3a;color:#fff;
+  text-decoration:none;font-size:14px;letter-spacing:.2px;padding:15px 16px;border-radius:7px;text-transform:uppercase}
+.quick a.primary{background:var(--red);font-weight:700}
+.quick a.manual{margin-top:auto;margin-bottom:60px}
+.quick-toggle{position:absolute;z-index:9;top:calc(78px + 130px);right:calc(22% - 1px);width:44px;height:90px;
+  border:0;background:#161616;color:#fff;border-radius:14px 0 0 14px;font-size:28px;cursor:pointer;
+  transition:right .3s ease,transform .3s ease}
+.quick-toggle.closed{right:0;transform:scaleX(-1)}
+
+/* ---------- HERO CONTENT ---------- */
+.content{position:relative;z-index:5;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:110px 20px 120px}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:clamp(34px,4.2vw,58px);
+  letter-spacing:.14em;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,.18)}
+.brand .logo{border-color:#fff;width:clamp(30px,3vw,44px);height:clamp(30px,3vw,44px);font-size:12px}
+.tag1{font-style:italic;font-weight:800;font-size:clamp(40px,5.6vw,80px);margin:18px 0 0;letter-spacing:.02em;
+  color:rgba(255,255,255,.92);transform:skewX(-6deg)}
+.tag2{font-style:italic;font-weight:900;font-size:clamp(64px,9.4vw,136px);line-height:.95;margin:0;letter-spacing:.01em;
+  color:#fff;transform:skewX(-8deg);text-shadow:0 4px 22px rgba(0,0,0,.2)}
+.price{margin:46px 0 6px;font-size:clamp(20px,2.2vw,30px);letter-spacing:.2em;color:rgba(255,255,255,.88)}
+.specs{margin:0 0 38px;font-size:clamp(12px,1.35vw,18px);letter-spacing:.14em;color:rgba(255,255,255,.8)}
+.book{display:flex;align-items:center;gap:14px;background:#fff;color:var(--ink);text-decoration:none;
+  padding:22px 38px;border-radius:12px;font-size:20px;letter-spacing:.1em;font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .2s}
+.book:hover,.book:focus-visible{transform:translateY(-2px)}
+.book small{font-size:15px;font-weight:400;letter-spacing:0;color:#555;border-left:1px solid #bbb;padding-left:14px}
+.below{margin-top:34px;font-size:14px;letter-spacing:.14em;color:rgba(255,255,255,.7)}
+
+/* ---------- AVIRA WIDGET ---------- */
+.avira{position:fixed;z-index:20;right:22px;bottom:22px;width:min(390px,calc(100vw - 30px));background:#fff;color:var(--ink);
+  border-radius:22px;padding:18px 18px 14px;box-shadow:0 14px 44px rgba(0,0,0,.28)}
+.avira[hidden]{display:none}
+.av-head{display:flex;align-items:center;gap:10px}
+.av-pic{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7a4a33,#d4a07a);flex:none}
+.av-name{font-weight:700;font-size:17px;letter-spacing:.3px}
+.av-open{margin-left:auto;border:1px solid #ddd;background:#fff;border-radius:20px;padding:7px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.av-x{border:0;background:none;font-size:22px;cursor:pointer;color:#444;padding:4px 6px}
+.av-title{font-size:27px;font-weight:800;letter-spacing:-.04em;margin:18px 0 12px}
+.av-sub{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}
+.av-sub b{display:block;font-size:14px;letter-spacing:.1em;color:#555;margin-bottom:4px}
+.av-sub p{margin:0;font-size:17px;line-height:1.35}
+.av-sub p span{color:var(--muted)}
+.suv{width:140px;height:54px;flex:none;background:
+  radial-gradient(circle at 24% 88%,#111 0 11px,transparent 12px),radial-gradient(circle at 76% 88%,#111 0 11px,transparent 12px),
+  linear-gradient(#1b1b1b,#1b1b1b);
+  clip-path:polygon(2% 75%,6% 50%,20% 44%,30% 14%,66% 12%,80% 42%,96% 52%,99% 80%,2% 80%);border-radius:6px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.tile{border:1px solid #eee;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);
+  min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  font:inherit;font-size:16px;font-weight:600;cursor:pointer;padding:10px 4px;text-align:center;color:var(--ink)}
+.tile:hover,.tile:focus-visible{border-color:var(--red)}
+.tile svg{width:42px;height:42px;stroke:var(--red);fill:none;stroke-width:1.6}
+.tile.more{border-style:dashed;color:var(--muted);font-weight:400;box-shadow:none}
+.tile.more svg{stroke:#444}
+.av-foot{border-top:1px solid #eee;margin-top:14px;padding-top:10px;font-size:15px;color:#555}
+.av-foot a{color:var(--red);font-weight:700;text-decoration:underline}
+
+/* ---------- CHAT TAB (right edge) ---------- */
+.chat-tab{position:fixed;z-index:15;right:0;top:50%;width:54px;height:54px;background:#000;border:0;border-radius:6px 0 0 6px;
+  display:none;place-items:center;cursor:pointer}
+.chat-tab i{width:24px;height:24px;border-radius:50%;background:#fff;display:block}
+
+/* ---------- COOKIE BAR ---------- */
+.cookie{position:fixed;z-index:18;left:0;right:0;bottom:0;background:#fff;color:var(--ink);padding:26px 4% calc(18px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:18px;line-height:1.7}
+.cookie[hidden]{display:none}
+.cookie a{color:var(--ink)}
+.cookie .acts{display:flex;gap:12px;margin-right:calc(24% + 10px);flex:none}
+.cookie button{font:inherit;font-size:16px;padding:12px 28px;border-radius:8px;cursor:pointer;border:1.5px solid var(--ink);background:#fff;color:var(--ink)}
+.cookie button.accept{background:var(--red);border-color:var(--red);color:#fff}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .menu,.nav .btn-outline,.quick,.quick-toggle{display:none}
+  .nav{left:12px;right:12px}.nav .btn-red{margin-left:auto}
+  .cookie{flex-direction:column;align-items:flex-start;font-size:15px}
+  .cookie .acts{margin-right:0}
+  .avira{right:12px;bottom:12px}
+  .cliff{width:70%;opacity:.6}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
