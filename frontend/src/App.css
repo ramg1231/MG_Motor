@@ -76,10 +76,7 @@ body{margin:0;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--white);m
 .av-sub b{display:block;font-size:14px;letter-spacing:.1em;color:#555;margin-bottom:4px}
 .av-sub p{margin:0;font-size:17px;line-height:1.35}
 .av-sub p span{color:var(--muted)}
-.suv{width:140px;height:54px;flex:none;background:
-  radial-gradient(circle at 24% 88%,#111 0 11px,transparent 12px),radial-gradient(circle at 76% 88%,#111 0 11px,transparent 12px),
-  linear-gradient(#1b1b1b,#1b1b1b);
-  clip-path:polygon(2% 75%,6% 50%,20% 44%,30% 14%,66% 12%,80% 42%,96% 52%,99% 80%,2% 80%);border-radius:6px}
+.suv{width:140px;height:56px;flex:none;display:block}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
 .tile{border:1px solid #eee;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);
   min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;

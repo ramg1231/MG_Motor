@@ -98,6 +98,24 @@ function Hero() {
   );
 }
 
+function SuvIcon() {
+  return (
+    <svg className="suv" viewBox="0 0 160 64" role="img" aria-label="MG Majestor SUV">
+      <ellipse cx="81" cy="60" rx="76" ry="3" fill="rgba(0,0,0,.12)" />
+      <path d="M52 8h58" stroke="#333" strokeWidth="2" strokeLinecap="round" />
+      <path fill="#1d1d1f" d="M6 46l2-12q2-4 10-5l16-2 12-15q2-2 6-2h60q5 0 7 3l11 14 18 3q6 1 7 6l1 10q0 3-4 3H6z" />
+      <path fill="#7d8b99" d="M50 14h24v13H40zM79 14h25v13H79zM108 14h6q2 0 3 2l9 11h-18z" />
+      <path d="M77 29v16" stroke="#3a3a3a" />
+      <path d="M86 33h6" stroke="#666" strokeWidth="1.5" />
+      <rect x="150" y="33" width="5" height="3" rx="1" fill="#ffd76a" />
+      <rect x="6" y="33" width="4" height="4" rx="1" fill="#d6202f" />
+      <circle cx="38" cy="49" r="12.5" fill="#fff" /><circle cx="124" cy="49" r="12.5" fill="#fff" />
+      <circle cx="38" cy="49" r="10" fill="#111" /><circle cx="124" cy="49" r="10" fill="#111" />
+      <circle cx="38" cy="49" r="5" fill="#a9b0b8" /><circle cx="124" cy="49" r="5" fill="#a9b0b8" />
+    </svg>
+  );
+}
+
 function Avira() {
   const [open, setOpen] = useState(true);
   const [msg, setMsg] = useState("");
@@ -115,7 +133,7 @@ function Avira() {
       <h2 className="av-title">Pay for what matters.</h2>
       <div className="av-sub">
         <div><b>{CAR.name}</b><p>Your must-have <span>tap one to find my variant</span></p></div>
-        <div className="suv" role="img" aria-label="Majestor SUV" />
+        <SuvIcon />
       </div>
       <div className="grid">
         {FEATURES.map((f) => (
