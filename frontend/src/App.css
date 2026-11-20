@@ -6,51 +6,13 @@
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
-body{margin:0;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--white);min-height:100%;overflow-x:hidden;background:#c9a77a}
+body{margin:0;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--white);min-height:100%;overflow-x:hidden;background:#111}
 
-/* ---------- HERO BACKGROUND (CSS-drawn desert) ---------- */
-.car{
-  position:absolute;
-  left:6%; bottom:12%;
-  width:min(40vw, 600px);
-  z-index:4;                 /* above the desert, below the text */
-  mix-blend-mode:multiply;   /* makes the white background disappear */
-  pointer-events:none;
-}
-.hero{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;
-  background:linear-gradient(180deg,#8d8a86 0%,#b9aa95 28%,#d8c3a2 52%,#d1b184 70%,#c49f6c 100%)}
-.hero::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse at 40% 22%,rgba(255,236,200,.55),transparent 55%)}
-.cliff{position:absolute;right:0;top:20%;width:48%;height:52%;
-  background:linear-gradient(90deg,#a2825f,#8c6a4a 60%,#6f533b);
-  clip-path:polygon(0 100%,4% 52%,12% 40%,20% 18%,34% 14%,46% 4%,64% 8%,80% 0,100% 6%,100% 100%);
-  filter:blur(1.2px)}
-.cliff::after{content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 3px,transparent 3px 26px),
-             repeating-linear-gradient(180deg,rgba(255,255,255,.06) 0 2px,transparent 2px 34px)}
-.city{position:absolute;left:0;bottom:36%;width:42%;height:22%;opacity:.6;filter:blur(2px);
-  background:
-   linear-gradient(#9a9791,#9a9791) 6% 100%/7% 55% no-repeat,
-   linear-gradient(#a8a49d,#a8a49d) 15% 100%/6% 80% no-repeat,
-   linear-gradient(#9a9791,#9a9791) 23% 100%/8% 45% no-repeat,
-   linear-gradient(#b0aca4,#b0aca4) 33% 100%/6% 100% no-repeat,
-   linear-gradient(#a09c95,#a09c95) 42% 100%/9% 60% no-repeat,
-   linear-gradient(#aaa69f,#aaa69f) 54% 100%/7% 75% no-repeat,
-   linear-gradient(#9a9791,#9a9791) 66% 100%/8% 50% no-repeat,
-   linear-gradient(#a8a49d,#a8a49d) 78% 100%/6% 35% no-repeat}
-.dunes{position:absolute;left:0;right:0;bottom:0;height:48%;
-  background:
-   radial-gradient(120% 70% at 20% 100%,#c8a373 0 55%,transparent 56%),
-   radial-gradient(110% 60% at 75% 100%,#d4b185 0 50%,transparent 51%),
-   linear-gradient(180deg,#d9bb90,#c59c68)}
-.dunes::before{content:"";position:absolute;inset:0;opacity:.35;
-  background:repeating-radial-gradient(ellipse at 30% 120%,transparent 0 14px,rgba(120,80,40,.25) 15px 16px)}
-
-/* ---------- HERO VIDEO ---------- */
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;pointer-events:none}
-.hero-shade{position:absolute;inset:0;z-index:3;pointer-events:none;
+/* ---------- HERO VIDEO BACKGROUND ---------- */
+.hero{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;background:#111}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
+.hero-shade{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.15) 65%,rgba(0,0,0,.45) 100%)}
-@media (prefers-reduced-motion:reduce){.hero-video{display:none}}
 
 /* ---------- NAV ---------- */
 .nav{position:absolute;z-index:10;top:calc(10px + env(safe-area-inset-top,0px));left:5%;right:7%;
@@ -150,6 +112,5 @@ body{margin:0;font-family:"Helvetica Neue",Arial,sans-serif;color:var(--white);m
   .cookie{flex-direction:column;align-items:flex-start;font-size:15px}
   .cookie .acts{margin-right:0}
   .avira{right:12px;bottom:12px}
-  .cliff{width:70%;opacity:.6}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}

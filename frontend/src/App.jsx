@@ -75,11 +75,11 @@ function QuickPanel() {
 
 const HERO_VIDEO = heroVideo;
 
-function HeroVideo({ onFail }) {
+function HeroVideo() {
   return (
     <video className="hero-video" autoPlay muted loop playsInline preload="auto"
-           aria-hidden="true" onError={onFail}>
-      <source src={HERO_VIDEO} type="video/mp4" onError={onFail} />
+           aria-hidden="true">
+      <source src={HERO_VIDEO} type="video/mp4" />
     </video>
   );
 }
@@ -152,12 +152,10 @@ function CookieBar() {
 }
 
 function App() {
-  const [videoOk, setVideoOk] = useState(true);
   return (
     <>
       <section className="hero" id="top">
-        <div className="cliff" /><div className="city" /><div className="dunes" />
-        {videoOk && <HeroVideo onFail={() => setVideoOk(false)} />}
+        <HeroVideo />
         <div className="hero-shade" />
         <Navbar />
         <QuickPanel />
