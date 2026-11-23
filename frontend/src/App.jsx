@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import "./App.css";
+const Visualize = lazy(() => import("./Visualize.jsx"));
 import heroVideo from "./assets/Mgv.mp4";
 
 const CAR = {
@@ -117,7 +118,7 @@ function SuvIcon() {
 }
 
 function Avira() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState("");
 
   if (!open) {
@@ -169,7 +170,20 @@ function CookieBar() {
   );
 }
 
+function useHash() {
+  const [hash, setHash] = useState(window.location.hash);
+  useEffect(() => {
+    const onChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onChange);
+    return () => window.removeEventListener("hashchange", onChange);
+  }, []);
+  return hash;
+}
+
 function App() {
+  const hash = useHash();
+  useEffect(() => { if (hash !== "#visualize") document.title = "MG Majestor"; }, [hash]);
+  if (hash === "#visualize") return <Suspense fallback={null}><Visualize /></Suspense>;
   return (
     <>
       <section className="hero" id="top">

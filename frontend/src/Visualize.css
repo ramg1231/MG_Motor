@@ -1,0 +1,181 @@
+.viz{min-height:100vh;min-height:100dvh;color:var(--ink);
+  background:radial-gradient(ellipse at 50% 40%,#ffffff 0%,#eceef1 55%,#d9dce1 100%)}
+
+.viz-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 5% 14px;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+.viz-back{color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;padding:10px 4px}
+.viz-back:hover,.viz-back:focus-visible{color:var(--red)}
+.viz-logo{width:38px;height:38px;border:3px solid var(--ink);border-radius:50% 50% 45% 45%;
+  display:grid;place-items:center;font-weight:900;font-size:15px;letter-spacing:-1px}
+
+.viz-main{display:flex;flex-direction:column;align-items:center;padding:40px 16px 60px;text-align:center}
+.viz-title{margin:0;font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:.14em}
+.viz-title span{color:var(--red)}
+.viz-sub{margin:8px 0 24px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:14px}
+
+.viz-stage{position:relative;width:min(1100px,100%);aspect-ratio:16/9;border-radius:16px}
+.viz-stage model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent;outline:none}
+.viz-stage model-viewer:focus-visible{box-shadow:0 0 0 3px var(--red);border-radius:16px}
+.viz-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:var(--muted);font-size:15px;letter-spacing:.06em;pointer-events:none}
+.viz-bar{width:min(260px,60%);height:4px;background:#d5d8dd;border-radius:4px;overflow:hidden}
+.viz-bar span{display:block;height:100%;background:var(--red);transition:width .2s}
+
+.viz-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:20px;width:min(560px,100%)}
+.viz-controls button{flex:none;font:inherit;font-size:20px;width:46px;height:46px;border-radius:50%;
+  border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.viz-controls button:hover,.viz-controls button:focus-visible{border-color:var(--red);color:var(--red)}
+.viz-controls .viz-play{width:auto;border-radius:10px;padding:0 18px;font-size:15px;font-weight:600}
+.viz-controls input{flex:1;min-width:0;accent-color:var(--red)}
+.viz-credit{margin-top:28px;font-size:12px;color:var(--muted);max-width:640px;line-height:1.5}
+.viz-credit a{color:inherit}
+.viz-hint{margin-top:14px;color:var(--muted);font-size:14px;letter-spacing:.08em}
+
+.viz-empty{width:min(700px,100%);padding:48px 24px;border:2px dashed #c4c8ce;border-radius:16px;
+  background:rgba(255,255,255,.7);color:#444;line-height:1.6}
+.viz-empty-title{font-size:22px;font-weight:700;color:var(--ink);margin:0 0 8px}
+.viz-empty code{background:#eef0f3;padding:2px 6px;border-radius:5px;font-size:14px}
+
+@media (max-width:600px){
+  .viz-top .btn{padding:10px 14px;font-size:14px}
+  .viz-stage{aspect-ratio:4/3}
+}
+
+/* ---------- HOTSPOTS ---------- */
+.viz-hotspot{position:relative;width:22px;height:22px;padding:0;border-radius:50%;cursor:pointer;
+  border:3px solid #fff;background:var(--red);box-shadow:0 2px 8px rgba(0,0,0,.35);
+  transition:opacity .25s,transform .2s}
+.viz-hotspot::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--red);
+  opacity:.6;animation:viz-pulse 1.8s ease-out infinite}
+.viz-hotspot:hover,.viz-hotspot:focus-visible,.viz-hotspot.on{transform:scale(1.2);outline:none}
+.viz-hotspot:not([data-visible]){opacity:0;pointer-events:none}
+.viz-hotspot-label{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);
+  white-space:nowrap;background:rgba(17,17,17,.88);color:#fff;font-size:12px;font-weight:600;letter-spacing:.04em;
+  padding:5px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s}
+.viz-hotspot:hover .viz-hotspot-label,.viz-hotspot:focus-visible .viz-hotspot-label{opacity:1}
+@keyframes viz-pulse{from{transform:scale(.7);opacity:.7}to{transform:scale(1.5);opacity:0}}
+
+/* ---------- PART PANEL ---------- */
+.viz-panel{position:absolute;z-index:5;top:16px;right:16px;bottom:16px;width:min(340px,40%);overflow:auto;
+  background:#fff;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.18);padding:22px 22px 18px;text-align:left;
+  animation:viz-in .25s ease-out}
+@keyframes viz-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.viz-panel-x{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;
+  background:#f1f2f4;font-size:16px;cursor:pointer;color:var(--ink)}
+.viz-panel-x:hover,.viz-panel-x:focus-visible{background:var(--red);color:#fff;outline:none}
+.viz-panel-kicker{margin:0;color:var(--red);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.viz-panel h2{margin:6px 40px 10px 0;font-size:24px;line-height:1.2}
+.viz-panel-text{margin:0 0 12px;color:#444;line-height:1.55;font-size:15px}
+.viz-panel ul{margin:0;padding:0;list-style:none}
+.viz-panel li{position:relative;padding:8px 0 8px 22px;border-top:1px solid #eee;font-size:14px;line-height:1.4}
+.viz-panel li::before{content:"";position:absolute;left:4px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.viz-panel-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.viz-panel-nav button{flex:1;font:inherit;font-size:14px;font-weight:600;padding:10px;border-radius:8px;
+  border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.viz-panel-nav button:hover,.viz-panel-nav button:focus-visible{border-color:var(--red);color:var(--red)}
+
+/* ---------- PART CHIPS ---------- */
+.viz-parts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px;max-width:1000px}
+.viz-parts button{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;
+  border:1px solid #c9cdd3;background:#fff;color:#333}
+.viz-parts button:hover,.viz-parts button:focus-visible{border-color:var(--red);color:var(--red)}
+.viz-parts button.on{background:var(--red);border-color:var(--red);color:#fff}
+.viz-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid #fff;
+  box-shadow:0 0 0 1px var(--red);vertical-align:middle}
+
+@media (max-width:1000px){
+  .viz-stage.has-panel{margin-bottom:12px;aspect-ratio:auto}
+  .viz-stage.has-panel model-viewer{height:min(62vw, 420px)}
+  .viz-panel{position:relative;top:auto;right:auto;bottom:auto;width:100%;margin-top:12px;max-height:none}
+}
+@media (prefers-reduced-motion:reduce){.viz-hotspot::after,.viz-panel{animation:none}}
+
+/* ---------- PRESENTER (AVIRA) ---------- */
+.pr{position:absolute;z-index:6;left:16px;bottom:16px;display:flex;align-items:flex-end;gap:10px;
+  width:min(440px,calc(60% - 32px));text-align:left;animation:pr-in .45s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pr-in{from{opacity:0;transform:translateY(30px) scale(.9)}to{opacity:1;transform:none}}
+.pr-avatar{flex:none;width:96px;height:112px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25))}
+.pr-avatar .pr-mouth{transform-box:fill-box;transform-origin:center}
+.pr-avatar.talking .pr-mouth{animation:pr-talk .22s ease-in-out infinite alternate}
+@keyframes pr-talk{from{transform:scaleY(.4)}to{transform:scaleY(1.6)}}
+.pr-avatar .pr-eyes{transform-box:fill-box;transform-origin:center;animation:pr-blink 4s infinite}
+@keyframes pr-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.pr-avatar.talking{animation:pr-nod 1.6s ease-in-out infinite}
+@keyframes pr-nod{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-1.5deg)}}
+.pr-bubble{position:relative;flex:1;min-width:0;background:#fff;border-radius:16px 16px 16px 4px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 14px 10px;margin-bottom:24px}
+.pr-head{display:flex;align-items:center;gap:8px;font-size:12px}
+.pr-head b{letter-spacing:.12em}
+.pr-head span{color:var(--muted)}
+.pr-acts{margin-left:auto;display:flex;gap:4px}
+.pr-acts button{width:30px;height:30px;border:0;border-radius:50%;background:#f1f2f4;cursor:pointer;font-size:14px;color:var(--ink)}
+.pr-acts button:hover,.pr-acts button:focus-visible{background:#e3e5e9;outline:2px solid var(--red)}
+.pr-caption{margin:8px 0;font-size:15px;line-height:1.45;color:var(--ink);min-height:44px}
+.pr-steps{display:flex;gap:4px}
+.pr-steps span{flex:1;height:3px;border-radius:3px;background:#e6e8eb}
+.pr-steps span.on{background:var(--red)}
+
+@media (max-width:1000px){
+  .pr{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}
+  .pr-avatar{width:76px;height:90px}
+}
+@media (prefers-reduced-motion:reduce){.pr,.pr-avatar,.pr-avatar *{animation:none!important}}
+
+/* ---------- GUIDED TOUR ---------- */
+.viz-tour{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 40px 12px 0;
+  padding:8px 10px;border-radius:10px;background:#fdf0f1;color:var(--red);font-size:12px;font-weight:700;letter-spacing:.06em}
+.viz-tour button{font:inherit;font-size:12px;border:1px solid var(--red);background:#fff;color:var(--red);
+  border-radius:6px;padding:5px 10px;cursor:pointer}
+.viz-tour button:hover,.viz-tour button:focus-visible{background:var(--red);color:#fff}
+.viz-controls .viz-tour-btn{background:var(--red);border-color:var(--red);color:#fff}
+.viz-controls .viz-tour-btn:hover,.viz-controls .viz-tour-btn:focus-visible{background:#b01824;color:#fff}
+
+/* ---------- INSIDE VIEW ---------- */
+.viz-stage.inside{overflow:hidden;background:#dfe6ec}
+.viz-stage.inside .viz-hotspot{opacity:0;pointer-events:none}
+.viz-seats{position:absolute;z-index:5;left:50%;bottom:16px;transform:translateX(-50%);display:flex;flex-wrap:wrap;
+  justify-content:center;gap:6px;width:max-content;max-width:calc(100% - 24px);padding:6px;border-radius:14px;background:rgba(17,17,17,.82)}
+.viz-seats button{font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border:0;border-radius:9px;
+  background:transparent;color:#fff;cursor:pointer}
+.viz-seats button:hover,.viz-seats button:focus-visible{background:rgba(255,255,255,.18)}
+.viz-seats button.on{background:#fff;color:var(--ink)}
+.viz-seats button.out{background:var(--red)}
+.viz-controls button:disabled{opacity:.45;cursor:not-allowed}
+@media (max-width:1000px){
+  .viz-seats{flex-wrap:nowrap;bottom:6px;gap:2px;padding:3px;max-width:calc(100% - 8px)}
+  .viz-seats button{font-size:11px;padding:8px 7px;white-space:nowrap}
+}
+
+/* ---------- AVIRA AT THE SIDE ---------- */
+.av-dock{position:absolute;z-index:6;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;
+  align-items:center;gap:2px;padding:8px 10px 8px 8px;border:0;border-radius:0 14px 14px 0;background:#fff;color:var(--ink);
+  box-shadow:0 6px 20px rgba(0,0,0,.18);cursor:pointer;font:inherit;font-size:11px;font-weight:700;letter-spacing:.1em}
+.av-dock .pr-avatar{width:46px;height:54px;filter:none}
+.av-dock:hover,.av-dock:focus-visible{color:var(--red);outline:2px solid var(--red)}
+@media (min-width:1001px){
+  /* open: a narrow card against the left edge, so the car stays clear */
+  .pr{left:0;bottom:auto;top:50%;translate:0 -50%;flex-direction:column;align-items:center;gap:4px;width:190px;
+    padding:12px;border-radius:0 16px 16px 0;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+  .pr-avatar{width:80px;height:94px;filter:none}
+  .pr-bubble{flex:none;width:100%;margin:0;padding:0;box-shadow:none;border-radius:0}
+  .pr-head{flex-wrap:wrap}
+  .pr-acts{margin-left:0;width:100%}
+}
+@media (max-width:1000px){
+  .av-dock{top:8px;transform:none;padding:4px 8px 4px 4px;font-size:10px}
+  .av-dock .pr-avatar{width:30px;height:35px}
+  .viz-stage.has-avira{aspect-ratio:auto;margin-bottom:12px}
+  .viz-stage.has-avira model-viewer{height:min(62vw, 420px)}
+  .viz-stage.has-avira .viz-seats{bottom:auto;top:calc(min(62vw, 420px) - 46px)}
+}
+
+/* ---------- AVIRA ON THE LEFT PAGE EDGE, CONTENT ON THE RIGHT PAGE EDGE ---------- */
+@media (min-width:1001px){
+  /* car area spans the whole page (cancels the 16px page padding) */
+  .viz-main .viz-stage{width:calc(100% + 32px);margin-inline:-16px;aspect-ratio:auto;height:min(620px,56vw,max(440px,100vh - 250px));border-radius:0}
+  .viz-stage.has-panel model-viewer{width:calc(100% - 356px)}
+  .viz-stage.has-avira model-viewer{width:calc(100% - 204px);margin-left:204px}
+  .viz-stage.has-panel.has-avira model-viewer{width:calc(100% - 356px - 204px)}
+  .viz-stage .viz-panel{top:0;right:0;bottom:auto;width:340px;max-height:100%;border-radius:16px 0 0 16px}
+  .viz-stage .av-dock,.viz-stage .pr{top:0;left:0;transform:none;translate:none}
+}
